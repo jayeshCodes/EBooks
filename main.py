@@ -1,24 +1,12 @@
-# main.py
-from utils.db_check import initialize_database
-import sys
-
+from config.database import get_db
+from application import Application
 
 def main():
-    """
-    Main application entry point
-    """
     print("Initializing E-Textbook Platform...")
-    print("\nChecking database connection...")
 
-    # Check database connection
-    if not initialize_database():
-        print("\nFatal Error: Could not establish database connection. Exiting...")
-        sys.exit(1)
+    print("Starting application...")
+    app = Application(get_db)
+    app.run()
 
-    print("\nStarting application...")
-    # Your application logic here
-    # start_application()
-
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
